@@ -8,4 +8,10 @@
     border: none;
     border-radius: 2px;
     margin: 216px 0 0;
+    transition: background-color 1s;
+}
+
+.authorisation__form_submit-button:hover {
+    background-color: rgba(255, 255, 255, 0.85);
+
 }
