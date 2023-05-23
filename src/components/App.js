@@ -13,7 +13,7 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import Register from "./Register";
 import Login from "./Login";
 import ProtectedRoute from "./ProtectedRoute";
-import * as auth from '../mestoAuth';
+import * as auth from "../mestoAuth";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -31,7 +31,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
-  const [userEmail, setUserEmail] = useState('');
+  const [userEmail, setUserEmail] = useState("");
   const navigate = useNavigate();
   const closeAllPopups = () => {
     setIsEditProfilePopupOpen(false);
@@ -51,23 +51,24 @@ function App() {
   function handleLogin(email) {
     setLoggedIn(true);
     setUserEmail(email);
-  };
+  }
 
   function tokenCheck() {
-    const jwt = localStorage.getItem('jwt');
-    if(jwt) {
-      auth.getContent(jwt)
-      .then((res) => {
-        handleLogin(res.data.email);
-        navigate('/');
-      })
-      .catch((err) => console.log(err));
+    const jwt = localStorage.getItem("jwt");
+    if (jwt) {
+      auth
+        .getContent(jwt)
+        .then((res) => {
+          handleLogin(res.data.email);
+          navigate("/");
+        })
+        .catch((err) => console.log(err));
     }
   }
 
   function onSignOut() {
     localStorage.removeItem("jwt");
-    setUserEmail('');
+    setUserEmail("");
   }
 
   useEffect(() => {
@@ -144,7 +145,7 @@ function App() {
   return (
     <div className="page">
       <CurrentUserContext.Provider value={currentUser}>
-        <Header userEmail={userEmail} onSignOut={onSignOut}/>
+        <Header userEmail={userEmail} onSignOut={onSignOut} />
         <Routes>
           <Route
             path="/"
@@ -163,7 +164,10 @@ function App() {
             }
           />
           <Route path="/sign-up" element={<Register />} />
-          <Route path="/sign-in" element={<Login handleLogin={handleLogin}/>} />
+          <Route
+            path="/sign-in"
+            element={<Login handleLogin={handleLogin} />}
+          />
         </Routes>
         <Footer />
         <EditProfilePopup
