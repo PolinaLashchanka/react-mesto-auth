@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useContext } from "react";
 import Card from "./Card";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
@@ -9,7 +9,7 @@ function Main({
   onCardClick,
   onCardLike,
   cards,
-  onDeleteClick
+  onDeleteClick,
 }) {
   const currentUser = useContext(CurrentUserContext);
   return (

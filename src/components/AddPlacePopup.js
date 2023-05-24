@@ -1,26 +1,25 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import PopupWithForm from "./PopupWithForm";
+import useForm from "../hooks/useForm";
 
-function AddPlacePopup({ isOpen, onClose, onAddPlace, isLoading }) {
-  const [cardName, setCardName] = useState("");
-  const [cardLink, setCardLink] = useState("");
-  function handleCardNameChange(e) {
-    setCardName(e.target.value);
-  }
-  function handleCardLinkChange(e) {
-    setCardLink(e.target.value);
-  }
+function AddPlacePopup({ isOpen, onAddPlace }) {
+  const { values, handleChange, setValues } = useForm({
+    cardName: "",
+    cardLink: "",
+  });
 
-useEffect(() => {
-  setCardName("");
-  setCardLink("");
-}, [isOpen])
+  useEffect(() => {
+    setValues({
+      cardName: "",
+      cardLink: "",
+    });
+  }, [isOpen]);
 
   function handleSubmit(e) {
     e.preventDefault();
     onAddPlace({
-      name: cardName,
-      link: cardLink,
+      name: values.cardName,
+      link: values.cardLink,
     });
   }
   return (
@@ -28,17 +27,15 @@ useEffect(() => {
       name="add-card"
       title="Новое место"
       isOpen={isOpen}
-      isClose={onClose}
       buttonName="Создать"
       onSubmit={handleSubmit}
-      isLoading={isLoading}
     >
       <input
         id="input-card-name"
         className="form__item form__item_card_name"
         type="text"
-        value={cardName}
-        onChange={handleCardNameChange}
+        value={values.cardName}
+        onChange={handleChange}
         minLength="2"
         maxLength="30"
         name="cardName"
@@ -50,9 +47,9 @@ useEffect(() => {
         id="input-card-link"
         className="form__item form__item_card_image"
         type="url"
-        value={cardLink}
-        onChange={handleCardLinkChange}
-        name="cardImage"
+        value={values.cardLink}
+        onChange={handleChange}
+        name="cardLink"
         placeholder="Ссылка на картинку"
         required
       />

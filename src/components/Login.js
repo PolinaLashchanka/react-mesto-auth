@@ -1,15 +1,7 @@
 import React, { useState } from "react";
 import Authorisation from "./Authorisation";
-import { useNavigate } from "react-router-dom";
-import * as auth from "../utils/mestoAuth";
-import InfoTooltip from "./InfoTooltip";
-import errorImage from "../images/errorImage.svg";
 
-function Login({ handleLogin }) {
-  const navigate = useNavigate();
-  const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
-  const [message, setMessage] = useState("");
-  const [infoPic, setInfoPic] = useState("");
+function Login({ onHandleLogin }) {
   const [formValue, setFormValue] = useState({
     email: "",
     password: "",
@@ -27,43 +19,18 @@ function Login({ handleLogin }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    auth
-      .authorize(password, email)
-      .then((data) => {
-        if (data.token) {
-          localStorage.setItem("jwt", data.token);
-          handleLogin(email);
-          navigate("/");
-        }
-      })
-      .catch((err) => {
-        setIsInfoTooltipOpen(true);
-        setMessage(err);
-        setInfoPic(errorImage);
-      });
+    onHandleLogin(email, password);
   };
 
-  function closeInfoTools() {
-    setIsInfoTooltipOpen(false);
-  }
-
   return (
-    <>
-      <Authorisation
-        title="Вход"
-        buttonName="Войти"
-        handleSubmit={handleSubmit}
-        handleChange={handleChange}
-        email={email}
-        password={password}
-      />
-      <InfoTooltip
-        isOpen={isInfoTooltipOpen}
-        isClose={closeInfoTools}
-        message={message}
-        infoPic={infoPic}
-      />
-    </>
+    <Authorisation
+      title="Вход"
+      buttonName="Войти"
+      handleSubmit={handleSubmit}
+      handleChange={handleChange}
+      email={email}
+      password={password}
+    />
   );
 }
 

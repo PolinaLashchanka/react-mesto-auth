@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AppContext } from "../contexts/AppContext";
+import usePopupClose from "../hooks/usePopupClose";
 
 function PopupWithForm({
   isOpen,
-  isClose,
   name,
   title,
   buttonName,
   children,
   onSubmit,
-  isLoading,
 }) {
   const classPopupOpened = "popup_opened";
+  const { isLoading, closeAllPopups } = useContext(AppContext);
+
+  usePopupClose(isOpen, closeAllPopups);
   return (
     <div
       className={`popup popup_type_${name} ${isOpen ? classPopupOpened : ""}`}
@@ -32,7 +35,7 @@ function PopupWithForm({
           className="button popup__close-button"
           type="button"
           aria-label="Закрыть"
-          onClick={isClose}
+          onClick={closeAllPopups}
         />
       </div>
     </div>

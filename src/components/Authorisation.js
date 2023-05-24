@@ -1,15 +1,23 @@
 import React from "react";
 
-function Authorisation(props) {
+function Authorisation({
+  title,
+  buttonName,
+  handleSubmit,
+  handleChange,
+  email,
+  password,
+  children
+}) {
   return (
     <div className="authorisation">
       <div className="authorisation__container">
-        <h2 className="authorisation__title">{props.title}</h2>
+        <h2 className="authorisation__title">{title}</h2>
         <form
           id="authorisation"
           className="authorisation__form"
           name="authorisation"
-          onSubmit={props.handleSubmit}
+          onSubmit={handleSubmit}
         >
           <input
             id="email"
@@ -17,8 +25,8 @@ function Authorisation(props) {
             name="email"
             type="email"
             autoComplete="email"
-            value={props.email}
-            onChange={props.handleChange}
+            value={email}
+            onChange={handleChange}
             placeholder="Email"
             required
           />
@@ -28,8 +36,8 @@ function Authorisation(props) {
             name="password"
             type="password"
             autoComplete="password"
-            value={props.password}
-            onChange={props.handleChange}
+            value={password}
+            onChange={handleChange}
             placeholder="Пароль"
             required
           />
@@ -37,10 +45,10 @@ function Authorisation(props) {
             className="button authorisation__form_submit-button"
             type="submit"
           >
-            {props.buttonName}
+            {buttonName}
           </button>
         </form>
-        {props.children}
+        {children}
       </div>
     </div>
   );
