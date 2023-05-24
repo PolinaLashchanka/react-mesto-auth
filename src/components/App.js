@@ -13,7 +13,7 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 import Register from "./Register";
 import Login from "./Login";
 import ProtectedRoute from "./ProtectedRoute";
-import * as auth from "../mestoAuth";
+import * as auth from "../utils/mestoAuth";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -57,7 +57,7 @@ function App() {
     const jwt = localStorage.getItem("jwt");
     if (jwt) {
       auth
-        .getContent(jwt)
+        .checkToken(jwt)
         .then((res) => {
           handleLogin(res.data.email);
           navigate("/");

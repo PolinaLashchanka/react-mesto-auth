@@ -1,30 +1,6 @@
 import React from "react";
-import { useState } from "react";
 
 function Authorisation(props) {
-  //   const [formValue, setFormValue] = useState({
-  //     email: "",
-  //     password: "",
-  //   });
-
-  //   const { email, password} = formValue;
-
-  //   const handleChange = (e) => {
-  //     const { name, value } = e.target;
-  //     setFormValue({
-  //       ...formValue,
-  //       [name]: value,
-  //     });
-  //   };
-
-  //   const handleSubmit = (e) => {
-  //     e.preventDefault();
-  //     props.onUpdateAuth({
-  //       email,
-  //       password
-  //     })
-  //   }
-
   return (
     <div className="authorisation">
       <div className="authorisation__container">

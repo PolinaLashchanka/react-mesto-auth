@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Authorisation from "./Authorisation";
 import { useNavigate } from "react-router-dom";
-import * as auth from "../mestoAuth";
+import * as auth from "../utils/mestoAuth";
 import InfoTooltip from "./InfoTooltip";
 import errorImage from "../images/errorImage.svg";
 

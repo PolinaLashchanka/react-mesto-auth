@@ -1,39 +1,37 @@
+import checkResponse from "./checkResponse";
+
 export const BASE_URL = "https://auth.nomoreparties.co";
 
+function request(url, options) {
+  return fetch(url, options).then(checkResponse)
+}
+
 export function register(password, email) {
-  return fetch(`${BASE_URL}/signup`, {
+  return request(`${BASE_URL}/signup`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ password, email }),
-  }).then((res) =>
-    res.ok ? res.json() : res.json().then((res) => Promise.reject(res.error))
-  );
+  });
 }
 
 export const authorize = (password, email) => {
-  return fetch(`${BASE_URL}/signin`, {
+  return request(`${BASE_URL}/signin`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ password, email }),
-  }).then((res) =>
-    res.ok
-      ? res.json()
-      : Promise.reject("Что-от пошло не так! Попробуйте еще раз.")
-  );
+  });
 };
 
-export const getContent = (token) => {
-  return fetch(`${BASE_URL}/users/me`, {
+export const checkToken = (token) => {
+  return request(`${BASE_URL}/users/me`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-  }).then((res) =>
-    res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`)
-  );
+  });
 };

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Authorisation from "./Authorisation";
 import { Link, useNavigate } from "react-router-dom";
-import * as auth from "../mestoAuth";
+import * as auth from "../utils/mestoAuth";
 import InfoTooltip from "./InfoTooltip";
 import errorImage from "../images/errorImage.svg";
 import acceptImage from "../images/acceptImage.svg";
@@ -31,15 +31,16 @@ function Register() {
     auth
       .register(password, email)
       .then(() => {
-        setIsInfoTooltipOpen(true);
         setMessage("Вы успешно зарегистрировались!");
         setInfoPic(acceptImage);
       })
       .catch((err) => {
-        setIsInfoTooltipOpen(true);
         setMessage(err);
         setInfoPic(errorImage);
-      });
+      })
+      .finally(() => {
+        setIsInfoTooltipOpen(true);
+      })
   };
 
   function closeInfoTools() {
