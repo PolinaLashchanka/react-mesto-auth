@@ -56,6 +56,7 @@ function App() {
 
   function tokenCheck() {
     const jwt = localStorage.getItem("jwt");
+    console.log(2);
     if (jwt) {
       auth
         .checkToken(jwt)
@@ -91,7 +92,7 @@ function App() {
           state.map((c) => (c._id === card._id ? newCard : c))
         );
       })
-      .catch(console.error);
+      .catch((console.error));
   }
 
   function handleUpdateUser({ name, about }) {
