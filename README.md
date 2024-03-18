@@ -1,17 +1,18 @@
-# Проект: MESTO_REACT_AUTH
----
+# MESTO_REACT_AUTH
+### My final version of MESTO project created during Ya.Practicum course "WEB developer"
+##### The goal of this project was to implement user support (registration and authorization) in the project [MESTO_REACT](https://github.com/PolinaLashchanka/mesto-react).
+##### This is a single page application, where you can register and create your own personal account. You can add and delete your photos, and also view and rate photos of other users.
+##### When you click the button next to the user name, a form for editing information about the user will open.
+#### Technological stack
+- HTML5
+- CSS3
+- Figma
+- React
+#### Installation:
+```bash
+git clone git@github.com:PolinaLashchanka/react-mesto-auth.git
 
-## Проект, созданный на курсе `Яндекс Практикум "ВЕб-разработчик с нуля"
-***
-### Целью данного проекта является реализация поддержки пользователя (регистрация и авторизация) в проекте [MESTO_REACT](https://github.com/PolinaLashchanka/mesto-react).
-***
-### Это одностраничный сайт для размещения фотографий. Любой пользователь может зарегистрироваться и создать свой личный аккаунт. Там он может добавлять и удалять свои фотографии, смотреть и оценивать фотографии других пользователей.
-### При клике на кнопку возле имени пользователя откроется форма редактирования информации о пользователе.
-***
-### Технологии, используемые при создании сайта - `HTML5, CSS3, Figma, React`
-***
-### Чтобы запустить проект, выполните команды:
-1. `npm install`
-2. `npm start`
-***
-
+npm install
+npm run start
+```
+##### *[Here](https://polinalashchanka.github.io/react-mesto-auth/) you will find a link to my project*
